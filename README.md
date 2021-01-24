@@ -15,7 +15,7 @@ Requirements:
 		    {django extensions}
         
 
-				Installation:
+			Installation:
 
 		1. Install django and VSCode successfully on your machine. (Guides can be found online)
 		2. Create a designated folder for the project, make sure 'requirements.txt' is present in it.
