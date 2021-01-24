@@ -8,15 +8,23 @@ Requirements:
 2. VSCode 
 3. Django web framework
 4. Python 3.3 or after	
-4.1   
+4.1 django extensions:
+
    asgiref==3.3.1
+   
    Django==3.1.3
+   
    django-grappelli==2.14.3
+   
    Pillow==8.0.1
+   
    psycopg2==2.8.6
+   
    pytz==2020.4
+   
    sqlparse==0.4.1
-{django extensions}
+   
+
         
 
 			Installation:
