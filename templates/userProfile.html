@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock %}
+{% block content%}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+ <br><br><br><br><br><br>
+    <div class="container bootstrap snippet" style="max-width:100%">
+        <div class="row">
+            <div class="col-sm-10">                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><!--left col-->
+                
+
+        <div class="text-center">
+            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+            
+        </div><br>                                    
+                  
+            </div><!--/col-3-->
+            
+            <div class="col-sm-9">
+             <h1>Hello, {{user.username}}</h1> 
+             <br><br><br>  
+               
+               
+            <div class="tab-content">
+            
+            
+                <div class="tab-pane active" id="home">
+                       {% for message in messages %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{message}}
+                                </div>
+                        {% endfor %}   
+                    <form class="form" action="userProfile" method="post" id="registrationForm">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>First name</h4></label>
+                                <input name="first_name" type="text" class="form-control" name="first_name" id="first_name" placeholder="{{user.first_name}}" title="enter your first name if any.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Last name</h4></label>
+                                <input name="last_name"  type="text" class="form-control" name="last_name" id="last_name" placeholder="{{user.last_name}}" title="enter your last name if any.">
+                            </div>
+                        </div>
+            
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="phone"><h4>Phone</h4></label>
+                                <input name="phone"  type="text" class="form-control" name="phone" id="phone" placeholder="{{user.phone}}" title="enter your phone number if any.">
+                            </div>
+                        </div>
+            
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="username"><h4>User Name</h4></label>
+                                 <input name="username"  type="text" class="form-control" name="username" id="username" " title="enter your user name" disabled value="{{user.username}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email</h4></label>
+                                <input name="email"  type="email" class="form-control" name="email" id="email" placeholder="{{user.email}}" title="enter your email.">
+                            </div>
+                        </div>
+                          <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="address"><h4>Address</h4></label>
+                                 <input name="address"  type="text" class="form-control" name="address" id="address" " title="enter your user name"  placeholder="{{user.address}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="password1"><h4>New Password</h4></label>
+                               <input name="password1"  type="password1" class="form-control" name="password1" id="password1" placeholder="password" type="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="cur_password"><h4>Current Password</h4></label>
+                                <input input id="cur_password" name="cur_password" placeholder="Current Password" class="form-control here" required="required" type="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Verify New Password</h4></label>
+                                <input name="password2"  type="password" class="form-control" name="password2" id="password2" placeholder="password2" type="password">
+                            </div>
+                        </div>
+                  
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                </div>
+                        </div>
+                    </form>              
+                      
+                </div><!--/tab-pane-->
+               
+              
+            </div><!--/tab-content-->
+
+        </div><!--/col-9-->
+    </div><!--/row-->
+    <br><br><br><br><br><br>
+
+{% endblock  %}
+                                                      

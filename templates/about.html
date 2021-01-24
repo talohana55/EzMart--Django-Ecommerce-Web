@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head%}
+
+
+{% endblock%} 
+{% block content%}
+  
+<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}" />
+<link  href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"  rel="stylesheet"  id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div class="container">
+  <div class="row">
+    <!-- Blog Post Content Column -->
+    <div class="col-lg-8"  >
+      <hr />
+
+      <div class="well bgcolor-skyblue">
+        <h1 style="text-align:center">About Us</h1>
+        
+      </div>
+
+      <hr />
+
+      <!-- Preview Image -->
+      <img        class="img-responsive"        src="http://mobilebusinessinsights.com/wp-content/uploads/2016/03/IBM_MobileFirst_SXSWBlog_0321_v2.jpg"alt="" >
+
+      <hr />
+
+      <!-- Post Content -->
+      <p class="lead">
+        We are a group of 4 students in our 2nd year in software engineering,from Sami Shamoon College of Engineering,that worked under the supervision and guidance of D"r Chasidim Hadas and Cochavi Hadar to create this project.
+        
+      </p>
+      <p>
+        From March 2020 the corona virus struck the country of israel and since then a lot of small businesses were hurt economically and still are,due to the lockdowns and fear from the virus.
+
+      </p>
+      <p>
+        Our project goal is helping this small businesses to get througth the corona virus pandemic by opening their own digital store for free and by hellping to connect them and customers in a safer way,without the need to fear the virus.
+
+      </p>
+      <p class="lead">
+        We believe that every store owner should get help during these hard times,no matter is race, sex,gender, religion and nationality.
+      </p>
+<!--       <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor
+        quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem
+        voluptates cupiditate voluptas illo saepe quaerat numquam recusandae?
+        Qui, necessitatibus, est!
+      </p>  -->
+
+      <hr />
+    </div>
+
+    <!-- Blog Sidebar Widgets Column -->
+    
+
+      <!-- Blog Categories Well -->
+      
+        <!-- /.row -->
+      </div>
+
+      <!-- Side Widget Well -->
+      <div class="well bgcolor-skyblue">
+        <h1 style="text-align:center">Our Crew</h1>
+        <p style="text-align:center">
+          Second year students, for a bachelor's degree in software engineering, at Sami Shimon College
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% comment %}
+------------------------------------------------------------------------------------------------------------------
+{% endcomment %}
+<link
+  href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Poppins:200,300,400,500,500i,600,700,800&display=swap"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+<div class="team-area">
+  <div class="team-warp">
+    <div class="team-one">
+      <div class="container-fluid">
+        <div class="row tp-padding">
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="team-style-one team-style-block">
+              <div class="img-box">
+                <img id="personal" src="{% static 'images/ron.jpg' %}" alt="t1" />
+                <div class="img-overlay"></div>
+                <div class="social">
+                  <a target="_blank" href="https://www.linkedin.com/in/ron-vayner-607814198" ><i class="fa fa-linkedin-square" style="font-size:24px"></i></a>
+                  <a target="_blank" href=""<i class="fa fa-github fa-5" aria-hidden="true"></i></a>
+                </div>
+              </div>
+              <div class="text-box">
+                <h3 class="name" >Ron Vayner</h3>
+                <span class="ttp">Founder & CEO</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="team-style-one team-style-block">
+              <div class="img-box">
+                <img id="personal1" src="{% static 'images/טל אוחנה.jpg' %}" alt="t2" />
+                <div class="img-overlay"></div>
+                <div class="social">
+                  <a target="_blank" href="https://www.facebook.com/tal.ohana.357/" class="fa fa-facebook"></a>
+                  <a target="_blank" href="https://github.com/talohana55"<i class="fa fa-github" aria-hidden="true"></i></a>
+                  <a target="_blank" href="https://www.linkedin.com/in/tal-ohana-a01abb1b4/" ><i class="fa fa-linkedin-square" style="font-size:24px"></i></a>
+                </div>
+              </div>
+              <div class="text-box">
+                <h3 class="name" >Tal Ohana</h3>
+                <span>Front-End </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="team-style-one team-style-block">
+              <div class="img-box">
+                <img id="personal" src="{% static 'images/tali.jpg' %}" alt="t3" />
+                <div class="img-overlay"></div>
+                <div class="social">
+                  <a href="#" class="fa fa-twitter"></a>
+                  <a href="" class="fa fa-facebook"></a>
+                  <a href="#" class="fa fa-instagram"></a>
+                </div>
+              </div>
+              <div class="text-box">
+                <h3 class="name">Tali Tevlin</h3>
+                <span>Founder & CEO</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="team-style-one team-style-block">
+              <div class="img-box">
+                <img id="personal" src="{% static 'images/ivgeny.jpg' %}" alt="t2" />
+                <div class="img-overlay"></div>
+                <div class="social">
+                  <a target="_blank" href="https://github.com/eodinzov94"<i class="fa fa-github" aria-hidden="true"></i></a>
+                  <a target="_blank" href="https://www.linkedin.com/in/%D7%99%D7%91%D7%92%D7%A0%D7%99-%D7%90%D7%95%D7%93%D7%99%D7%A0%D7%A6%D7%95%D7%91-64a51a197/" ><i class="fa fa-linkedin-square" style="font-size:24px"></i></a>
+                </div>
+              </div>
+              <div class="text-box">
+                <h3 class="name">Evgeny Odinzov</h3>
+                <span>Back-End</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br><br><br><br>
+
+{% endblock %}

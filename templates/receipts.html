@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+{% endblock %}
+{% block content%}
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+ <br><br><br><br>
+
+
+    <div class="receipts-header" >
+        <h2 style="text-align:center">
+        My Orders
+        </h2>
+    </div>   
+
+<div class="well" style>
+       <form action="{% url 'receipts' %}" method="GET">
+    <select name="delta" style="margin: auto; width:10rem;height:2.5rem">
+                                        <option selected>{{ShowDelta}}</option>
+                                        <option value="365" >Last Year</option>
+                                        <option value="90">Last Three month</option>
+                                        <option value="30">Last Month</option>
+                                        <option value="7">Last Week</option>
+                                        <option value="1">Last Day</option>
+                                    </select> 
+                              <button type="submit" class="btn btn-primary">Show </button>
+                      </form>
+    <table class="table" id="table">
+      <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Buyer Name</th>
+                <th>Store Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Shipping Address</th> 
+                <th>Purchase Date</th> 
+                <th>Status</th>
+                
+            </tr>
+                <th style="width: 15rem;"></th>
+                </tr>
+      </thead>
+      {% for order in orders %}
+      <tbody>
+        <tr>    
+          <td>{{order.product_name}}</td>     
+          <td>{{order.buyer_name}}</td>
+          <td>{{order.shop_name}}</td>
+          <td id="price"><span>{{order.price}}$</span></td>    
+          <td>X{{order.quantity}}</td>  
+          <td>{{order.shipping_address}}</td>  
+          <td>{{order.create_date}}</td>
+          <td> <strong>{{order.status}}</strong> </td>       
+        </tr>
+        
+      </tbody>
+       {% endfor %}
+    </table>
+    <hr>
+        <div class="total" id="sum"> 
+          <div>
+            <h2 >TOTAL:<span id="sum" style="color:red;font-size:1.7rem" > {{sum}}  $</span> </h2>
+          </div>
+        </div>
+</div>
+
+
+
+ <br><br><br><br>
+ {% endblock  %}

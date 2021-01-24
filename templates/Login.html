@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block head%}
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock%}
+ {% block content%}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+        <div class="container" style="max-width:100%">
+        <br>  
+        
+        <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 800px;">
+                <h4 class="card-title mt-3 text-center">Login</h4>              
+              <br>
+              <div>
+                    {% for message in messages %}
+                    <p style="color:red">{{message}} </p>
+                    {% endfor %}
+                </div>
+                <form action="login" method="post">
+                    {% csrf_token %}
+                 <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-id-badge"></i> </span>
+                    </div>
+                    <input name="username" class="form-control" placeholder="Username" type="username">
+                </div> <!-- form-group// -->
+                 <!-- form-group// -->
+                <div class="form-group input-group">
+               
+                
+                </div> <!-- form-group end.// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="password" class="form-control" placeholder="Password" type="password">
+                </div> <!-- form-group// -->
+               <!-- form-group// -->                                      
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Log in  </button>
+                </div> <!-- form-group// -->      
+                <p class="text-center">Don't have an account? <a href="registercustomer" class="register-link">Create Account</a> </p>                                                                 
+            </form>
+            </article>
+            </div> <!-- card.// -->
+
+           
+            <br><br>
+        </article>
+
+       
+{% endblock%}

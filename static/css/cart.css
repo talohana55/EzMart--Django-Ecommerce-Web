@@ -1,0 +1,24 @@
+.text-muted {
+  font-size: 2rem;
+}
+.price {
+  font-size: 2rem;
+}
+
+#quant {
+  width: 5rem;
+}
+.text-right {
+  padding: 20px 40px;
+}
+.col-xs-4 {
+  padding: 20px 40px;
+}
+.input-sm {
+  border: 2px solid black;
+  height: 3rem;
+}
+
+.col-xs-2 {
+  padding: 20px 40px;
+}

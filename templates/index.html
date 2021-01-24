@@ -1,0 +1,369 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head%}
+{% endblock%}
+  {% block content%}
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class="slider_section " style="backgroung-image:">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>                   
+                     
+                    </h1>
+                    <p>
+                      {% for store in stores %}
+                        <br>
+                      {% endfor %} 
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>
+                      Welcome to our shop
+                    </h1>
+                    <p>
+                    </p>
+                    <a href="">
+                      Read More
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="{% static 'images/carousel1.jpg' %}" alt="My image" id='carousel1-welcome'>                     
+                     </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>
+                      Welcome to our shop
+                    </h1>
+                    <p>
+                    </p>
+                    <a href="">
+                      Read More
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="{% static 'images/carousel2.jpg' %}" alt="My image" id='carousel1-welcome'>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel_btn_box">
+          <a class="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#customCarousel1" role="button" data-slide="next">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+
+  <!-- product section -->
+
+
+  <section class="product_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Our Products
+        </h2>
+      </div>
+      <div class="row">
+
+       {% for product in allProducts|slice:":9" %}
+        <div class="col-sm-6 col-lg-4">
+          <div class="box">
+                <div class="img-box">
+                    <img src="{{127.0.0.1}}/{{product.img}}" alt="" id="prod-main-show">
+                        
+                </div>
+                    <div class="detail-box" id="prod_title">
+                        <h5>
+                          {{product.title}}
+                        </h5>
+                      <div class="product_info" id="prod_price">
+                          <h5>
+                            <span>$</span>  {{product.price}}
+                                                          
+                          </h5>                  
+                      </div>                     
+                    </div>
+          </div>
+          <form action="purchase" method="POST"><button  class="buy_btn" name="buy-id-btn" value="{{product.id}}"> 
+                     {% csrf_token %}                     
+                          <span>
+                            Buy
+                          </span>                        
+                    </button>
+                    </form>
+        </div>
+        
+         {% endfor %}
+
+
+      </div>
+
+      <div class="btn_box">
+        <a href="{% url 'product' %}" class="view_more-link">
+          View More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- end product section -->
+
+  <!-- about section -->
+
+  <section class="about_section">
+    <div class="container-fluid  ">
+      <div class="row">
+        <div class="col-md-5 ml-auto">
+          <div class="detail-box pr-md-3">
+            <div class="heading_container">
+              <h2>
+                We Provide Best For You
+              </h2>
+            </div>
+            <p>
+              2020 was a challenging year, the Covid-19 virus brought with it changes in the world, especially in the field of trade.
+              Due to government guidelines, restricting access to stores many shoppers are forced to find unique solutions.
+              EzMart provides commercial needs for customers and sellers, on our site you can enjoy fast online purchasing, selling products and marketing the stores in a fun way.
+              We are here at your service.
+            </p>
+            <a href="">
+              Read More
+            </a>
+          </div>
+        </div>
+        <div class="col-md-6 px-0">
+          <div class="img-box">
+            <img src="images/about-img.jpg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+  <!-- why us section -->
+
+  <section class="why_us_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Why Choose Us
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/w1.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Fast Delivery
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/w2.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Free Shiping
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/w3.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Best Quality
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end why us section -->
+
+
+  <!-- client section -->
+
+  <section class="client_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          What Says Our Customers
+        </h2>
+      </div>
+    </div>
+    <div class="client_container ">
+      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="box">
+                <div class="detail-box">
+                  <p>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  </p>
+                  <p>
+                    I bought a Bosch 7 kg washing machine from EzMart , at 1400 NIS including transport and installation. Reasonable and good assembly.
+
+                    I ordered the machine on Sunday 15/11/20 and the machine arrived within 7 days, and the technician arrived the next day on the eighth 23/11/20 -. Reasonable and Beautiful. The service on the phone and WhatsApp was excellent.
+                     At first I said I wanted 5 payments and we closed a deal. An hour later I requested 10 payments, and they changed the payment. And relieved me. 
+                     Our laundry room was very small and the faucet was broken, the technician overcame the situation and it was definitely easy .. 
+                     I wanted him to help put the dryer on the machine and he said they should not do that. 
+                     I was disappointed 'but still, it's a good level of service ..
+                  </p>
+                </div>
+                <div class="client-id">
+                  <div class="img-box">
+                    <img src="images/client.jpg" alt="">
+                  </div>
+                  <div class="name">
+                    <h5>
+                      James Dew
+                    </h5>
+                    <h6>
+                      Dad of two
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="box">
+                <div class="detail-box">
+                  <p>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  </p>
+                  <p>
+                    I bought a Bosch 7 kg washing machine from EzMart , at 1400 NIS including transport and installation. Reasonable and good assembly.
+
+                    I ordered the machine on Sunday 15/11/20 and the machine arrived within 7 days, and the technician arrived the next day on the eighth 23/11/20 -. Reasonable and Beautiful. The service on the phone and WhatsApp was excellent. At first I said I wanted 5 payments and we closed a deal. An hour later I requested 10 payments, and they changed the payment. And relieved me. Our laundry room was very small and the faucet was broken, the technician overcame the situation and it was definitely easy .. I wanted him to help put the dryer on the machine and he said they should not do that. I was disappointed 'but still, it's a good level of service ..
+                  </p>
+                </div>
+                <div class="client-id">
+                  <div class="img-box">
+                    <img src="images/client.jpg" alt="">
+                  </div>
+                  <div class="name">
+                    <h5>
+                      David Cohen
+                    </h5>
+                    <h6>
+                      Dad of three
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="box">
+                <div class="detail-box">
+                  <p>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  </p>
+                  <p>
+                    A top-notch shopping experience, truly an amazing surprise.
+                    I recently purchased 2 electronic devices, a cell phone, and a CD radio device, in two separate purchases.
+                    The procedure is simple and efficient, very fast delivery, regular update on the delivery status, just remove the hat, professionals !!!
+                  </p>
+                </div>
+                <div class="client-id">
+                  <div class="img-box">
+                    <img src="images/client.jpg" alt="">
+                  </div>
+                  <div class="name">
+                    <h5>
+                      Hadas Chassidim
+                    </h5>
+                    <h6>
+                      SCE Lecturer
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel_btn-box">
+          <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev">
+            <span>
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExample2Controls" role="button" data-slide="next">
+            <span>
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+  <!-- end client section -->
+  {% endblock %}
+
+ 

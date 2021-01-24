@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% comment %} ------------------------------------container scripts,css--------------------------------------------------------- {% endcomment %}
+<!-- JQuery Core JavaScript -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    {% comment %} ------------------------------------container scripts,css--------------------------------------------------------- {% endcomment %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% comment %} ------------------------------------container scripts,css--------------------------------------------------------- {% endcomment %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+{% endblock %}
+{% block content%}
+
+
+ <section class="product_section layout_padding">
+ <link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h1>
+          Our Stores
+        </h1>
+      </div>
+      <div class="row">
+
+       {% for store in stores %}
+        <div class="col-sm-6 col-lg-4">
+          <div class="box">
+                <div class="img-box">
+                
+                    <img src="{{127.0.0.1}}/{{store.logo_img}}" alt="" id="prod-main-show">
+                        
+                   <form action="{% url 'GoToStore' %}" method="POST">
+                    {% csrf_token %}                     
+                   <button  class="add_cart_btn" name="store" value="{{store.id}}"> 
+
+                          <span>
+                            Go To Store
+                          </span>                        
+                    </button>
+                    </form>
+                </div>
+
+
+                    <div class="detail-box" id="prod_title">
+                        <h5 class="name">
+                          {{store.name}}
+                        </h5>                                     
+                    </div>
+          </div>
+        </div>
+         {% endfor %}
+      </div>     
+  </section>
+  
+
+
+  <br><br><br>
+
+{% endblock%}
+

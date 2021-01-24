@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> {% endcomment %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock %}
+{% block content%}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<!--- Include the above in your HEAD tag -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<br><br><br><br>
+
+           
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 ">
+        {% load static %}
+                <link rel="stylesheet" type="text/css" href="{% static 'css/businessProfile.css' %}">
+                 <link rel="stylesheet" type="text/css" href="{% static 'css/inventory.css' %}">
+            <form class="form" action="Business" method="post"  enctype="multipart/form-data">
+               <div class="image-upload-one">
+                    <h2 style="text-align:center;color:teal">Store Logo</h2>
+                    <div class="center">
+                        <div >
+                            <label for="file-ip-1" >
+                            <img src="{{127.0.0.1}}/{{user.store.logo_img}}" alt="teste" height="200">
+                            </label>
+                            <input type="file"  name="img_one" id="file-ip-1" accept="image/*" hidden>
+                        </div>
+                        <small class="small">Click on image to change store logo</small>
+                    </div>
+                    <hr>
+                </div>   
+		     <div class="list-group ">
+            
+              <a href="{% url 'businessProfile' %}" class="list-group-item list-group-item-action ">Owner Profile</a>
+                <a href="{% url 'Business' %}" class="list-group-item list-group-item-action active" >Business Profile</a>
+                <a href="{% url 'inventory' %}" class="list-group-item list-group-item-action">Inventory</a>
+                <a href="{% url 'ordersManage' %}" class="list-group-item list-group-item-action">Orders Managment</a>
+                <a href="{% url 'sellingreport' %}" class="list-group-item list-group-item-action">Selling Report</a>                  
+            </div> 
+		</div>
+		<div class="col-md-9">
+		    <div class="card">
+		        <div class="card-body">
+		            <div class="row">
+		                <div class="col-md-12"  style=" size:7rem">
+		                    <h4 style="text-align:center;color:teal">{{user.store.name}}</h4>
+		                    <hr>
+		                </div>
+		            </div>
+		             <div class="row">
+                            <div class="col-md-12">
+                              {% for message in messages %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{message}}
+                                </div>
+                                {% endfor %} 
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label for="businessName" class="col-4 col-form-label" >Business Name*</label> 
+                                    <div class="col-8">
+                                    <input id="businessName" name="businessName" placeholder="{{user.store.name}}" class="form-control here"  type="text" >
+                                    </div>
+                                </div>
+                                   <div class="form-group row">
+                                    <label for="Bnum" class="col-4 col-form-label">Business NUM*</label> 
+                                    <div class="col-8">
+                                    <input id="Bnum" name="Bnum" placeholder="{{user.store.businessNum}}" class="form-control here"  type="number" disabled>
+                                    </div>
+                                </div>
+                                  <div class="form-group row">
+                                    <label for="date" class="col-4 col-form-label">Date Joined*</label> 
+                                    <div class="col-8">
+                                    <input id="date" name="date" placeholder="{{user.store.date_joined}}" class="form-control here"  type="text"   disabled  >
+                                    </div>
+                                </div>                                                           
+                                <div class="form-group row">
+                                    <label for="phone" class="col-4 col-form-label">Phone*</label> 
+                                    <div class="col-8">
+                                    <input id="phone" name="phone" placeholder="{{user.store.phone}}" class="form-control here"  type="number"  >
+                                    </div>
+                                </div>                       
+                               
+                                <div class="form-group row">
+                                    <label for="address" class="col-4 col-form-label">Address*</label> 
+                                    <div class="col-8">
+                                    <input id="address" name="address" placeholder="{{user.store.address}}" class="form-control here" type="text"  >
+                                    </div>
+                                </div>
+                                  <div class="form-group row">
+                                    <label for="category" class="col-4 col-form-label">Category*</label> 
+                                    <div class="col-8">
+                                    <select name="category" id="category"  class="input_add_product" >
+                                        <option selected>{{user.store.category}}</option>
+                                        <option value="Electronics">Electronics</option>
+                                        <option value="Food Stuff">Food Stuff</option>
+                                        <option value="Tools">Tools</option>
+                                        <option value="Other">Other</option>
+                                    </select> 
+                                    </div>
+                                </div>
+
+                                  <div class="form-group row">
+                                    <label for="facebook" class="col-4 col-form-label">Facebook link*</label> 
+                                    <div class="col-8">
+                                    <input id="facebook" name="facebook" placeholder="{{user.store.facebook_url}}" class="form-control here" type="url" >
+                                    </div>
+                                </div>
+
+                                  
+                                  <div class="form-group row">
+                                    <label for="instagram" class="col-4 col-form-label">Instagram link*</label> 
+                                    <div class="col-8">
+                                    <input id="instagram" name="instagram" placeholder="{{user.store.instagram_url}}" class="form-control here" type="url" >
+                                    </div>
+                                </div>
+
+                                  
+                                  <div class="form-group row">
+                                    <label for="twitter" class="col-4 col-form-label">Twitter link*</label> 
+                                    <div class="col-8">
+                                    <input id="twitter" name="twitter" placeholder="{{user.store.twitter_url}}" class="form-control here" type="url" >
+                                    </div>
+                                </div>
+                                                     
+                            
+                          
+                                <form action="Business"  method="post">
+                                    {% csrf_token %}
+                                <div class="form-group row">
+                                    <div class="offset-4 col-8">
+                                    <button name="submit" type="submit" class="btn btn-primary">Update Store Profile</button>
+                                    </div>
+                                </div>
+                               </form>
+                                </form>
+                            </div>
+                        </div>
+                        
+                    </div>
+		    </div>
+		</div>
+	</div>
+</div>
+<br><br><br><br>
+
+{% endblock %}

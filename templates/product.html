@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% comment %} ------------------------------------container scripts,css--------------------------------------------------------- {% endcomment %}
+<!-- JQuery Core JavaScript -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    {% comment %} ------------------------------------container scripts,css--------------------------------------------------------- {% endcomment %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% comment %} ------------------------------------container scripts,css--------------------------------------------------------- {% endcomment %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+{% endblock %}
+{% block content%}
+
+
+ <section class="product_section layout_padding">
+ <link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h1>
+          Our Products
+        </h1>
+      </div>
+       <button class="prod-details" id="details"><img id="detail-img-btn" src="https://img.icons8.com/ios/24/000000/info--v3.png"/><h3>Click to view</h3></button>
+      <div class="row">
+
+       {% for product in products %}
+        <div class="col-sm-6 col-lg-4">
+          <div class="box">
+                <div class="img-box">
+                
+                    <img src="{{127.0.0.1}}/{{product.img}}" alt="" id="prod-main-show">
+                        
+                    <form action="{% url 'purchase' %}" method="POST"><button  class="add_cart_btn" name="buy-id-btn" value="{{product.id}}"> 
+                                         {% csrf_token %}                     
+
+                          <span>
+                            Buy
+                          </span>                        
+                    </button>
+                    </form>
+                </div>
+                    <div class="detail-box" id="prod_title">
+                        <h5 class="name">
+                          {{product.title}}
+                        </h5>
+                      <div class="product_info" id="prod_price">
+                          <h5 class="price">
+                            {{product.price}}<span>$</span>  
+                                                          
+                          </h5>  
+                                          
+                      </div>                     
+                    </div>
+          </div>
+        </div>
+         {% endfor %}
+      </div>     
+  </section>
+    {% comment %} ------------------------------------PRODUCT to VIEW--------------------------------------------------------- {% endcomment %}
+
+
+  <body>  
+  <section class="product_section layout_padding">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
+      <div class="modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      {% for product in products %}
+        <div class="card">
+          <div class="container-fliud">
+            <div class="wrapper row">
+              <div class="preview col-md-6">
+                
+                <div class="preview-pic tab-content">
+                  <div class="tab-pane active" id="pic-1"><img src="{{127.0.0.1}}/{{product.img}}" /></div>
+                  
+                </div>
+               
+                
+              </div>
+              <div class="details col-md-6">
+                <h3 class="product-title">{{product.title}}</h3>
+                <div class="rating">
+              
+                <p class="product-description">{{product.description}}</p>
+                <h4 class="price">current price: <span>{{product.price}}$</span></h4>
+                <h4 class="price">current Quantity: <span>{{product.quantity}}</span></h4>              
+                
+                  <div class="action">
+                  <form action="{% url 'purchase' %}" method="POST"><button  class="add-to-cart btn btn-default" name="buy-id-btn" value="{{product.id}}"> 
+                     {% csrf_token %}                     
+                          <span class="fa fa-money" aria-hidden="true">
+                            Buy
+                          </span>                        
+                    </button>
+                    </form>
+                    <br>
+
+                    <form action="{% url 'StoreHomePage' %}" method="POST"><button  name="store" class="StoreHomePage" value="{{product.id}}"> 
+                      {% csrf_token %}                     
+                           <span class="fa fa-money" aria-hidden="true">
+                            Go to Store
+                           </span>                        
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+        {% endfor %}
+    </section>
+  </body>
+
+
+
+  {% comment %} <script>
+    function cart_add_button(cart, id) {
+      return cart.values().dict.get("add")(id, 1);
+    }
+  </script> {% endcomment %}
+  <script>
+  $(function () {
+          /* BOOTSNIPP FULLSCREEN FIX */
+      if (window.location == window.parent.location) {
+          $('#back-to-bootsnipp').removeClass('hide');
+          $('.alert').addClass('hide');
+      }    
+
+      $('#details').on('click', function(event) { //add product
+          event.preventDefault();
+          $('#myModal1').modal('show');
+      });        
+   
+  });
+ </script>
+ 
+
+  <br><br><br>
+
+{% endblock%}
+

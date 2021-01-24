@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> {% endcomment %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% comment %} ------------------------------------container scripts,css--------------------------------------------------------- {% endcomment %}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+{% endblock %}
+{% block content%}
+<br><br><br><br><br><br> 
+
+<div class="container">    
+           
+    <h1> <i class="fa fa-inventory"></i> Products <small> 
+    </small></h1>
+    <table class="table table-hover" id="myTable">
+      <thead>
+        <tr class="row-category">
+            <th>#ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Description</th> 
+            <th class="btn-mais-info text-primary">
+                <i class="open_info fa fa-plus-square-o"></i>
+                <i class="open_info hide fa fa-minus-square-o"></i> Picture 
+            </th> 
+        </tr>
+      </thead>
+      <tbody id="tbodyToModify">  
+      {% for product in allProducts %}
+        <form  action="update_prod"  method="post" enctype="multipart/form-data">
+                    {% csrf_token %}      
+                <tr class="row-prod" id="row_of_prod">
+                <td id="id_default">{{product.id}}</td>
+                <td id="col_title" ><input id="prod-name" name="prod-name" placeholder="{{product.title}}" type"text"></td>
+                <td id="col_cat">
+                <select name="category" id="category" class="input_add_product" >
+                                        <option selected>{{product.category}}</option>
+                                        <option value="Electronics">Electronics</option>
+                                        <option value="Food Stuff">Food Stuff</option>
+                                        <option value="Tools">Tools</option>
+                                        <option value="Other">Other</option>
+                                    </select> 
+                </td>
+                <td id="col_price"><input  id="prod-price" name="prod-price" placeholder="{{product.price}}" type="number" step="any">$</td>
+                <td id="col_quan"><input id="quan-prod" name="quan-prod" placeholder="{{product.quantity}}" type="number" min="0"></td> 
+                <td id="col_desc"><textarea id="desc" name="desc" rows="2" cols="25" placeholder="{{product.description}}"></textarea> 
+                <td id="col_img">
+                    <input type="file" id="myfile" name="myfile" class="open_info hide" accept="image/*">
+                    <p class="open_info hide" id="img"> <img src="{{127.0.0.1}}/{{product.img}}" alt="teste" width="75"></p>                
+                </td>                                                                             
+                
+                <td>      
+                        <button name="btn-prod-update-click" type="submit" class="btn-prod-update" id="btn-prod-update-click" value="{{product.id}}">
+                         UPDATE
+                        </button>
+        </form>
+                            <br><br>
+                            <form action="delete_prod"  method="post">
+                                {% csrf_token %}
+                            <button type="submit" class="btn-prod-delete" id="btn-prod-delete-click" name="btn-prod-delete-click" value="{{product.id}}"
+                            onclick="return confirm('Do you really want to delete this product?');">
+                                DELETE
+                            </button> 
+                            </form>          
+          </td> 
+        </tr>      
+         {% endfor %}
+      </tbody> 
+    </table> 
+               
+    
+    <div class="col-sm-12 ">      
+     
+        <div class="modal-footer">       
+        <div>
+            <button class="btn-prod-add" id="prod-add">
+                Add Product
+            </button>
+        </div>      
+
+        {% comment %} <ul class="pagination ">
+          <li><a href="#">«</a></li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>      
+          <li><a href="#">»</a></li>
+         
+        </ul>     {% endcomment %}
+       
+        
+    </div>
+    
+   
+        
+</div>
+
+{% comment %} ----------------------------------------------------ADD Product HTML --------------------------------------------------------------------------- {% endcomment %}
+<div class="modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/inventory.css' %}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel"> <strong>Name of Product </strong> </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="text-danger fa fa-times"></i></button>
+                    </div>
+                <form action="add_prod" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                 <div class="modal-body">                  
+                    <table class="add-prod-teble ">
+                            <tbody>
+
+                                <td class="h6"><strong>Product Name</strong></td>
+                                <td> <input id="nameProd" class="input_add_product" name="nameProd" type="text" required> </td>
+                                
+                                </tr>
+                                <tr>
+                                    <td class="h6"><strong>Price</strong></td>
+                                    <td> <input id="priceProd" class="input_add_product" name="priceProd" type="number" min=0 step="any" required> </td>
+                                    
+                                </tr>
+                                
+                                <tr>
+                                    <td class="h6"><strong>Category</strong></td>
+                                    <td>
+                                    <select name="category" id="category" class="input_add_product" required>
+                                        <option value="Electronics">Electronics</option>
+                                        <option value="Food Stuff">Food Stuff</option>
+                                        <option value="Tools">Tools</option>
+                                        <option value="Other" selected>Other</option>
+                                    </select> 
+                                </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="h6"><strong>Quantity</strong></td>
+                                    <td><input id="quantityProd" class="input_add_product" name="quantityProd" type="number" min="0" required > </td>
+                                    
+                                </tr>                             
+                            
+                             <tr>
+                                    <td class="h6"><strong>Description</strong></td>
+                                    
+                                    <td>
+                                    <div>
+                                            
+                                                <textarea id="desc" name="desc" rows="2" cols="25" >
+                                                </textarea>
+                                            <br><br>
+                                         </div>                                  
+                                    </td>
+                                   
+                            </tr> 
+                            <tr>                                
+                                   <label for="myfile">Select a image:</label>
+                                    <input type="file" id="myfile" name="myfile" accept="image/*">
+
+                            </tr>
+                                                    
+                 
+                        
+                            </tbody>
+                    </table>                           
+                          
+                    
+                </div>   
+                        <div class="modal-footer" >       
+                            <div class="btn-prod-func">
+                                <button type="form" class="btn-prod-add" id="func_to_add_prod" onclick="createRow()" value="Create Row">
+                                    ADD
+                                </button>
+                            </div>                   
+                     
+                       </div>    
+              </form>                    
+        </div>
+    </div>
+</div> 
+</div>
+{% comment %} ---------------------------------------------------- ^^ ADD Product HTML ^^ --------------------------------------------------------------------------- {% endcomment %}
+
+
+
+<script>
+$(function () {
+        /* BOOTSNIPP FULLSCREEN FIX */
+    if (window.location == window.parent.location) {
+        $('#back-to-bootsnipp').removeClass('hide');
+        $('.alert').addClass('hide');
+    }    
+
+    $('#prod-add').on('click', function(event) { //add product
+        event.preventDefault();
+        $('#myModal1').modal('show');
+    }); 
+       
+    $('.btn-mais-info').on('click', function(event) { // show description by click + 
+        $( '.open_info' ).toggleClass( "hide" );
+    })
+    $('.btn-mais-info-desc').on('click', function(event) { // show description by click + 
+        $( '.open_info' ).toggleClass( "hide" );
+    })    
+     
+});
+
+
+function createRow() {
+    var row = document.createElement('tr'); // create row node    
+    var col_id = document.createElement('td');
+    var col = document.createElement('td'); // create column node
+    var col2 = document.createElement('td'); // create second column node
+    var col3 = document.createElement('td');
+   row.appendChild(col_id);
+    row.appendChild(col); // append first column to row
+    row.appendChild(col2); // append second column to row
+    row.appendChild(col3);
+    col_id.innerHTML = document.getElementById("id_default").value;
+    col.innerHTML = document.getElementById("nameProd").value; // put data in first column
+    col2.innerHTML = document.getElementById("quantityProd").value; // put data in second column
+    col3.innerHTML = document.getElementById("priceProd").value;
+    var table = document.getElementById("tbodyToModify"); // find table to append to
+    table.appendChild(row); // append row to table
+}
+
+
+</script>
+
+ 
+ <br><br><br><br><br><br> 
+{% endblock %}

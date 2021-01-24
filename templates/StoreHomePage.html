@@ -1,0 +1,210 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block head%}
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+{% endblock%}
+  {% block content%}
+
+
+<body class="aboutBody">
+
+  <!-- Page Content --><br><br><br><br><br><br>
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4" style="text-align: center">{{store.name}}</h1>
+        <hr>
+            <div class="carousel-item active">
+              {% if store.logo_img %}
+                <img class="d-block img-fluid" src="{{127.0.0.1}}/{{store.logo_img}}" alt="First slide">
+              {% else %}
+                <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+              {% endif %}
+            </div>
+            <br><br><br><br><br><br><br><br><br><hr>
+        <div class="list-group" style="text-align: center">
+         <button  class="list-group-item" id="about"><p class="about">About</p></button>
+         
+        </div>
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+          </div>
+        </div>
+        <div class="row">
+          {% if store.status != 'C' %}
+            <h1>Oops the store is not confrimed :(</h1>
+          {% else %}
+          {% if products %}
+          {% for product in products %}
+          <!-- /.Producr Box- -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              {% if product.img %}
+              <a href="#"><img class="card-img-top" src="{{127.0.0.1}}/{{product.img}}" alt=""></a>
+              {% endif %}
+              <div class="card-body" style="text-align: center">
+                <h4 class="card-title">
+                  <a href="#">{{product.title}}</a>
+                </h4>
+                <h5>${{product.price}}</h5>
+                <p class="card-text">{{product.description}}</p>
+              </div>
+              <div class="img-box" style="text-align: center">
+                <img src="images/p6.png" alt="">
+                <form action="{% url 'purchase' %}" method="POST"><button  class="add-to-cart btn btn-default" name="buy-id-btn" value="{{product.id}}"> 
+                  {% csrf_token %}                     
+                       <span class="fa fa-money" aria-hidden="true">
+                         Buy
+                       </span>                        
+                 </button>
+                 </form>
+              </div>
+            </div>
+          </div>
+        <!-- /.row -->
+        {% endfor %}     
+            {% else %} 
+              <h1>Oops there is no added products yet in this store</h1>
+            {% endif %}
+        {% endif %} 
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <br><br><br><br>
+  <!-- /.container -->
+
+  <!-- Footer -->
+
+</div>
+   <footer class="py-5 bg-dark" style="text-align:center">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; EzMart 2020</p>
+      <br>
+      <p class="m-0 text-center text-white"><strong>{{store.name}} SOCIALS:</strong></p>
+      {% if store.facebook_url %}
+        <a href='{{store.facebook_url}}'><i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i></i></a>
+      {% else %}
+        <a href='#'><i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i></i></a>
+      {% endif %}
+      {% if store.instagram_url %}
+        <a href='{{store.instagram_url}}'><i class="fa fa-instagram fa-3x" aria-hidden="true"></i></i></a>
+      {% else %}
+        <a href='#'><i class="fa fa-instagram fa-3x" aria-hidden="true"></i></i></a>
+      {% endif %}
+      {% if store.twitter_url %}
+        <a href='{{store.twitter_url}}'><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></i></a>
+      {% else %}
+        <a href='#'><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></i></a>
+      {% endif %}
+    </div>
+    <!-- /.container -->
+  </footer>
+
+{% load static %}
+ <link rel="stylesheet" type="text/css" href="{% static 'css/StoreHomePage.css' %}">
+  <!---->   <!---->  <!---->  <!---->  <!---->   <!---->  <!---->  <!---->
+
+  <div class="modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="container1">
+      <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="well well-sm">
+                  <div class="row">
+                      <div class="col-sm-6 col-md-4">
+      <hr>
+                           {% if store.logo_img %}
+                            <img class="d-block img-fluid" src="{{127.0.0.1}}/{{store.logo_img}}" alt="First slide">
+                           {% else %}
+                            <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+                           {% endif %}
+                      </div>
+                      <div class="col-sm-6 col-md-4">
+                          <h4 style="font-size:4rem">{{store.name}}</h4>
+                          <i class="glyphicon glyphicon-map-marker"></i>{{store.address}}
+                                <hr>
+                                <i class="glyphicon glyphicon-time"></i>{{store.date_joined}}                              
+                                <hr>
+                                <i class="glyphicon glyphicon-phone"></i>{{store.phone}}                              
+                                <hr>
+                               
+                         
+                          </div>
+                             
+                      </div>
+                                 <footer class="py-5 bg-dark" style="background:#505979;text-align:center">
+
+                              <div class="btn-group" style="text-align:center">                       
+                                <div class="container">
+                                  {% if store.facebook_url %}
+                                  <a href='{{store.facebook_url}}'><i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i></i></a>
+                                {% else %}
+                                  <a href='#'><i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i></i></a>
+                                {% endif %}
+                                {% if store.instagram_url %}
+                                  <a href='{{store.instagram_url}}'><i class="fa fa-instagram fa-3x" aria-hidden="true"></i></i></a>
+                                {% else %}
+                                  <a href='#'><i class="fa fa-instagram fa-3x" aria-hidden="true"></i></i></a>
+                                {% endif %}
+                                {% if store.twitter_url %}
+                                  <a href='{{store.twitter_url}}'><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></i></a>
+                                {% else %}
+                                  <a href='#'><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></i></a>
+                                {% endif %}
+                                </div>
+                              </footer>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+  <!---->   <!---->  <!---->  <!---->  <!---->   <!---->  <!---->  <!---->
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+  <script>
+  $(function () {
+          /* BOOTSNIPP FULLSCREEN FIX */
+      if (window.location == window.parent.location) {
+          $('#back-to-bootsnipp').removeClass('hide');
+          $('.alert').addClass('hide');
+      }    
+
+      $('#about').on('click', function(event) { //add product
+          event.preventDefault();
+          $('#myModal1').modal('show');
+      });        
+   
+  });
+ </script>
+
+
+{% endblock  %}

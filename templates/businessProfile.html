@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> {% endcomment %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock %}
+{% block content%}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    
+ <br><br><br><br>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 ">
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/businessProfile.css' %}">
+                
+            
+
+
+
+                <div class="list-group ">            
+                <a href="#" class="list-group-item list-group-item-action active">Owner Profile</a>
+                <a href="{% url 'Business' %}" class="list-group-item list-group-item-action">Business Profile</a>
+                <a href="{% url 'inventory' %}" class="list-group-item list-group-item-action">Inventory</a>
+                <a href="{% url 'ordersManage' %}" class="list-group-item list-group-item-action">Orders Managment</a>
+                <a href="{% url 'sellingreport' %}" class="list-group-item list-group-item-action">Selling Report</a>              
+                </div> 
+            </div>
+
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 style="text-align:center">{{user.username}}</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                              {% for message in messages %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{message}}
+                                </div>
+                                {% endfor %} 
+                                <form class="form" action="businessProfile" method="post" id="registrationForm">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label for="username" class="col-4 col-form-label" >User Name*</label> 
+                                    <div class="col-8">
+                                    <input id="username" name="username" placeholder="Username" class="form-control here"  type="text" disabled  value="{{user.username}}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="first_name" class="col-4 col-form-label">First Name</label> 
+                                    <div class="col-8">
+                                    <input id="first_name" name="first_name" placeholder="{{user.first_name}}" class="form-control here" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="last_name" class="col-4 col-form-label">Last Name</label> 
+                                    <div class="col-8">
+                                    <input id="last_name" name="last_name" placeholder="{{user.last_name}}" class="form-control here" type="text" >
+                                    </div>
+                                </div>                               
+                                <div class="form-group row">
+                                    <label for="phone" class="col-4 col-form-label">Phone*</label> 
+                                    <div class="col-8">
+                                    <input id="phone" name="phone" placeholder="{{user.phone}}" class="form-control here"  type="number" >
+                                    </div>
+                                </div>                       
+                                <div class="form-group row">
+                                    <label for="email" class="col-4 col-form-label">Email*</label> 
+                                    <div class="col-8">
+                                    <input id="email" name="email" placeholder="{{user.email}}" class="form-control here"  type="email" >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="address" class="col-4 col-form-label">address</label> 
+                                    <div class="col-8">
+                                    <input id="address" name="address" placeholder="{{user.address}}" class="form-control here" type="text" >
+                                    </div>
+                                </div>
+                                {% comment %} <div class="form-group row">
+                                    <label for="publicinfo" class="col-4 col-form-label">Public Info</label> 
+                                    <div class="col-8">
+                                    <textarea id="publicinfo" name="publicinfo" cols="40" rows="4" class="form-control"></textarea>
+                                    </div>
+                                </div> {% endcomment %}
+                                 <div class="form-group row">
+                                    <label for="cur_password" class="col-4 col-form-label">Current Password</label> 
+                                    <div class="col-8">
+                                    <input id="cur_password" name="cur_password" placeholder="Current Password" class="form-control here" required="required" type="password">
+                                    </div>
+                                </div> 
+                                 <div class="form-group row">
+                                    <label for="password1" class="col-4 col-form-label">New Password</label> 
+                                    <div class="col-8">
+                                    <input id="password1" name="password1" placeholder="New Password" class="form-control here" type="password">
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <label for="password2" class="col-4 col-form-label">Verify New Password</label> 
+                                    <div class="col-8">
+                                    <input id="password2" name="password2" placeholder="New Password" class="form-control here" type="password">
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <div class="offset-4 col-8">
+                                    <button name="submit" type="submit" class="btn btn-primary">Update My Profile</button>
+                                    </div>
+                                </div>
+                                 
+                                </form>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
+     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+
+            function showPreviewOne(event){
+            if(event.target.files.length > 0){
+                let src = URL.createObjectURL(event.target.files[0]);
+                let preview = document.getElementById("file-ip-1-preview");
+                preview.src = src;
+                preview.style.display = "block";
+            } 
+            }
+            function myImgRemoveFunctionOne() {
+            document.getElementById("file-ip-1-preview").src = "https://i.ibb.co/ZVFsg37/default.png";
+            }
+
+        </script>
+
+{% endblock  %}
