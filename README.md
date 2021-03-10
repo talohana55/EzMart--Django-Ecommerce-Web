@@ -1,4 +1,4 @@
-# EzMart- Django Ecommerce Web
+# EzMart - Django Ecommerce Web
 
 
 
